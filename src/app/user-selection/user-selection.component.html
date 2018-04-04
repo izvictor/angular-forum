@@ -1,28 +1,29 @@
-<div class="col-lg-8 offset-2">
-  <table class="table table-hover table-bordered table-sm">
-    <caption>List of users</caption>
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users" [ngClass]="{'table-danger':user.admin}">
-      <td>{{user.id}}</td>
-      <td>
-        <i class="fa fa-user-secret" *ngIf="user.admin"></i>
-        <i class="fa fa-user" *ngIf="!user.admin"></i>
-        {{user.name}}
-      </td>
-      <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-      <td class="text-center">
-        <button class="btn btn-info btn-sm" (click)="selected(user)"><i class="fa fa-sign-in"></i></button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="row">
+  <div class="col-lg-8 offset-2">
+    <table class="table table-hover table-sm">
+      <caption>List of users</caption>
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users" [ngClass]="{'table-danger':user.admin}">
+        <td>{{user.id}}</td>
+        <td>
+          <i class="fa fa-user-secret" *ngIf="user.admin"></i>
+          <i class="fa fa-user" *ngIf="!user.admin"></i>
+          {{user.name}}
+        </td>
+        <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+        <td class="text-center">
+          <button class="btn btn-info btn-sm" (click)="selected(user)"><i class="fa fa-sign-in"></i></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-

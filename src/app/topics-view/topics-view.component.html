@@ -1,33 +1,22 @@
-<div class="row">
-  <div>
-    <table class="table table-hover table-bordered table-sm">
-      <caption>List of topics</caption>
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Title</th>
-        <th scope="col">Content</th>
-        <th scope="col">Author</th>
-        <th scope="col">Comments</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let topic of topics">
-        <td>{{topic.id}}</td>
-        <td>
-          {{topic.title}}
-        </td>
-        <td>{{topic.content}}</td>
-        <td>{{topic.user.name}}</td>
-        <td>
-          <ul>
-            <li *ngFor="let comment of topic.comments">
-              <i class="fa fa-user"></i> <span>{{comment.user?.name || 'Anonymous'}}</span> - {{comment.content}}
+<div class="row" *ngFor="let topic of topics">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{topic.title}}</h5>
+        <p class="card-text">{{topic.content}}</p>
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-comment"></i> Comments
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let comment of topic.comments">
+              <i class="fa fa-user"></i>
+              <span [ngClass]="{'font-italic text-info' : comment.user?.id===loggedIn.id}">{{comment.user?.name || 'Anonymous'}}</span>
+              - {{comment.content}}
             </li>
           </ul>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

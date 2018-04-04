@@ -6,7 +6,9 @@
   </div>
 </nav>
 
-<f-user-selection (userSelected)="setLogged($event)" *ngIf="!getLogged()"></f-user-selection>
+<div class="container-fluid">
+  <f-user-selection (userSelected)="setLogged($event)" *ngIf="!getLogged()"></f-user-selection>
 
-<f-topics-view [loggedIn]="getLogged()" *ngIf="getLogged()"></f-topics-view>
+  <f-topics-view [loggedIn]="getLogged()" *ngIf="getLogged()"></f-topics-view>
+</div>
 
