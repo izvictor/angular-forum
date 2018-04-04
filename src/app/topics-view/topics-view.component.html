@@ -22,7 +22,7 @@
         <td>
           <ul>
             <li *ngFor="let comment of topic.comments">
-              <i class="fa fa-user"></i> <b>{{comment.user?.name || 'Anonymous'}}</b> - {{comment.content}}
+              <i class="fa fa-user"></i> <span>{{comment.user?.name || 'Anonymous'}}</span> - {{comment.content}}
             </li>
           </ul>
         </td>

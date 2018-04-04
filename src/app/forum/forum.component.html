@@ -1,11 +1,12 @@
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="#">Forum</a>
-  <div class="pull-right" *ngIf="logged">
-    <i class="fa fa-user"></i> {{logged?.name}}
-    <button class="btn btn-sm" (click)="logged=null"><i class="fa fa-sign-out"></i></button>
+  <div class="pull-right" *ngIf="getLogged()">
+    <i class="fa fa-user"></i> {{getLogged()?.name}}
+    <button class="btn btn-sm" (click)="setLogged(null)"><i class="fa fa-sign-out"></i></button>
   </div>
 </nav>
-<f-user-selection (userSelected)="logged=$event" *ngIf="!logged"></f-user-selection>
 
-<f-topics-view [loggedIn]="logged" *ngIf="logged"></f-topics-view>
+<f-user-selection (userSelected)="setLogged($event)" *ngIf="!getLogged()"></f-user-selection>
+
+<f-topics-view [loggedIn]="getLogged()" *ngIf="getLogged()"></f-topics-view>
 

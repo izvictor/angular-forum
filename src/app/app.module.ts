@@ -1,11 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 
-import { AppComponent } from './app.component';
-import { ForumComponent } from './forum/forum.component';
-import { UserSelectionComponent } from './user-selection/user-selection.component';
-import { TopicsViewComponent } from './topics-view/topics-view.component';
+import {AppComponent} from './app.component';
+import {ForumComponent} from './forum/forum.component';
+import {UserSelectionComponent} from './user-selection/user-selection.component';
+import {TopicsViewComponent} from './topics-view/topics-view.component';
+import {LoggedService} from './services/logged.service';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TopicsViewComponent } from './topics-view/topics-view.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [LoggedService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

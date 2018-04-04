@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {topicList} from '../model/topic-list';
-import {User} from '../model/models';
+import {Topic, User} from '../model/models';
 
 @Component({
   selector: 'f-topics-view',
@@ -9,14 +9,16 @@ import {User} from '../model/models';
 })
 export class TopicsViewComponent implements OnInit {
 
-  topics = topicList;
+  topics: Topic[] = topicList;
 
   @Input() loggedIn: User;
 
   constructor() {
+    console.log('constructor', this.loggedIn);
   }
 
   ngOnInit() {
+    console.log('onInit', this.loggedIn);
   }
 
 }

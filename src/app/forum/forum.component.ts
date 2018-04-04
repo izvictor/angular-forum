@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {fakeUsers} from '../model/user-list';
 import {User} from '../model/models';
-import {topicList} from '../model/topic-list';
+import {LoggedService} from '../services/logged.service';
 
 @Component({
   selector: 'f-forum',
@@ -10,12 +9,20 @@ import {topicList} from '../model/topic-list';
 })
 export class ForumComponent implements OnInit {
 
-  logged: User;
 
-  constructor() {
+  constructor(private loggedService: LoggedService) {
   }
 
   ngOnInit() {
+  }
+
+  getLogged(): User {
+    return this.loggedService.logged;
+
+  }
+
+  setLogged(user: User) {
+    this.loggedService.logged = user;
   }
 
 
