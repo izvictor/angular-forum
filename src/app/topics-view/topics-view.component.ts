@@ -28,10 +28,6 @@ export class TopicsViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  getLogged(): User {
-    return this.loggedService.logged;
-  }
-
   loadLoggedUser(id: number) {
     if (!this.loggedService.logged) {
       this.apiService.getUser(id).subscribe(user => {

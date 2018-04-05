@@ -11,18 +11,23 @@ import {HttpClientModule} from '@angular/common/http';
 import {ApiService} from './services/api.service';
 import {RouterModule} from '@angular/router';
 import {ROUTES} from './routes';
+import {TopicViewComponent} from './topic-view/topic-view.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ForumComponent,
     UserSelectionComponent,
-    TopicsViewComponent
+    TopicsViewComponent,
+    TopicViewComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    FormsModule
+
   ],
   providers: [LoggedService, ApiService],
   bootstrap: [AppComponent]
