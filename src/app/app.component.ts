@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {LoggedService} from './services/logged.service';
 import {User} from './model/models';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'f-root',
@@ -10,7 +11,8 @@ import {User} from './model/models';
 export class AppComponent {
   title = 'Forum';
 
-  constructor(private loggedService: LoggedService) {
+  constructor(private loggedService: LoggedService,
+              private router: Router) {
 
   }
 
@@ -19,7 +21,10 @@ export class AppComponent {
   }
 
   setLogged(user: User) {
-    return this.loggedService.logged = user;
+    if (!user) {
+      this.router.navigateByUrl('/');
+    }
+    this.loggedService.logged = user;
   }
 }
 

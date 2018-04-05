@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Topic, User} from '../model/models';
 import {ApiService} from '../services/api.service';
 import {LoggedService} from '../services/logged.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'f-topics-view',
@@ -12,9 +13,16 @@ export class TopicsViewComponent implements OnInit {
 
   topics: Topic[] = [];
 
-  constructor(private apiService: ApiService, private loggedService: LoggedService) {
+  constructor(private apiService: ApiService,
+              private loggedService: LoggedService,
+              private route: ActivatedRoute) {
     console.log('constructor', loggedService.logged);
     apiService.getTopics().subscribe(topics => this.topics = topics);
+    this.route.queryParams.subscribe(q => {
+      console.log(q);
+      // could test if already logged to avoid unnecessary request
+      this.loadLoggedUser(q.logged);
+    });
   }
 
   ngOnInit() {
@@ -22,6 +30,14 @@ export class TopicsViewComponent implements OnInit {
 
   getLogged(): User {
     return this.loggedService.logged;
+  }
+
+  loadLoggedUser(id: number) {
+    if (!this.loggedService.logged) {
+      this.apiService.getUser(id).subscribe(user => {
+        this.loggedService.logged = user;
+      });
+    }
   }
 
 }

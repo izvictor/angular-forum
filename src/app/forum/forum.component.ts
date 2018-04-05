@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../model/models';
-import {LoggedService} from '../services/logged.service';
 
 @Component({
   selector: 'f-forum',
@@ -10,15 +8,10 @@ import {LoggedService} from '../services/logged.service';
 export class ForumComponent implements OnInit {
 
 
-  constructor(private loggedService: LoggedService) {
+  constructor() {
   }
 
   ngOnInit() {
-  }
-
-  getLogged(): User {
-    return this.loggedService.logged;
-
   }
 
 

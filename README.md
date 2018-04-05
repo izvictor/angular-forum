@@ -30,3 +30,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 http://rxmarbles.com/
 
 https://gitter.im/robusta-code/Lobby
+
+debugger 'Une ligne de code pour declanncher le debug'
