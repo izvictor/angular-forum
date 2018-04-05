@@ -6,22 +6,24 @@
         <p class="card-text">{{topic.content}}</p>
         <div class="card">
           <div class="card-header">
-            <div class="pull-left">
-              <i class="fa fa-comment"></i> <span>Comments</span>
+            <div class="pull-left mt-2">
+              <i class="fa fa-comment"></i> Comments
             </div>
             <div class="pull-right">
-              <input name="filterComments" [(ngModel)]="commentFilter" class="form-control" placeholder="Search comments"/>
+              <input name="filterComments" [(ngModel)]="commentFilter" class="form-control"
+                     placeholder="Search comments"/>
             </div>
           </div>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let comment of topic.comments">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let comment of getTopicComments()">
               <i class="fa fa-user"></i>
               <span [ngClass]="{'font-italic text-info' : comment.user?.id===getLogged()?.id}">{{comment.user?.name || 'Anonymous'}}</span>
-              : {{comment.content}}
-              ({{comment.score}})
-              <button type="button" class="btn btn-sm" (click)="scoreUp(comment)"><i class="fa fa-thumbs-up"></i>
+              : <span [ngClass]="getCommentClass(comment)">{{comment.content}}</span>
+              ({{comment.score?comment.score:0}})
+              <button type="button" class="btn btn-sm" *ngIf="getLogged()" (click)="scoreUp(comment)">
+                <i class="fa fa-thumbs-up"></i>
               </button>
-              <button type="button" class="btn btn-sm" (click)="scoreDown(comment)"><i class="fa fa-thumbs-down"></i>
+              <button type="button" class="btn btn-sm" *ngIf="getLogged()" (click)="scoreDown(comment)"><i class="fa fa-thumbs-down"></i>
               </button>
             </li>
           </ul>
@@ -32,7 +34,9 @@
           <textarea name="newComment" class="form-control col-sm-8" [(ngModel)]="newComment"
                     placeholder="New comment"></textarea>
           <div class="col-sm-3">
-            <button type="button" class="btn btn-sm btn-primary" (click)="createNewComment()">Save</button>
+            <button type="button" class="btn btn-sm btn-primary" (click)="createNewComment()"
+                    [ngClass]="{'disabled':!getLogged()}">Save
+            </button>
           </div>
         </form>
       </div>

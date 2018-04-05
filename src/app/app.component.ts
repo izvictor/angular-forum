@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {LoggedService} from './services/logged.service';
-import {User} from './model/models';
+import {User} from './model/user';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,7 +9,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Forum';
 
   constructor(private loggedService: LoggedService,
               private router: Router) {

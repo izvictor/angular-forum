@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User} from '../model/models';
+import {User} from '../model/user';
 
 @Injectable()
 export class LoggedService {

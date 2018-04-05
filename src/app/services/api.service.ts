@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
-import {IComment, Topic, User} from '../model/models';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {LoggedService} from './logged.service';
+import {User} from '../model/user';
+import {Topic} from '../model/topic';
+import {Comment} from '../model/comment';
 
 @Injectable()
 export class ApiService {
@@ -25,18 +27,18 @@ export class ApiService {
   }
 
   createComment(content: string, toppic: Topic) {
-    let comment: IComment = {
+    const comment: Comment = {
       id: -1,
       content,
       user: this.loggedService.logged
     };
     const url = this.api + 'comments/topic/' + toppic.id;
-    return this.http.post<IComment>(url, comment);
+    return this.http.post<Comment>(url, comment);
   }
 
-  updateComment(comment: IComment) {
+  updateComment(comment: Comment) {
     const url = this.api + 'comments/' + comment.id;
-    return this.http.put<IComment>(url, comment);
+    return this.http.put<Comment>(url, comment);
   }
 
 }
