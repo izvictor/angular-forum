@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{topic.title}}</h5>
+        <p class="card-text">{{topic.content}}</p>
+        <div class="card">
+          <div class="card-header">
+            <div class="pull-left">
+              <i class="fa fa-comment"></i> <span>Comments</span>
+            </div>
+            <div class="pull-right">
+              <input name="filterComments" [(ngModel)]="commentFilter" class="form-control" placeholder="Search comments"/>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let comment of topic.comments">
+              <i class="fa fa-user"></i>
+              <span [ngClass]="{'font-italic text-info' : comment.user?.id===getLogged()?.id}">{{comment.user?.name || 'Anonymous'}}</span>
+              : {{comment.content}}
+              ({{comment.score}})
+              <button type="button" class="btn btn-sm" (click)="scoreUp(comment)"><i class="fa fa-thumbs-up"></i>
+              </button>
+              <button type="button" class="btn btn-sm" (click)="scoreDown(comment)"><i class="fa fa-thumbs-down"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <form class="form-inline" name="newCommentForm">
+          <textarea name="newComment" class="form-control col-sm-8" [(ngModel)]="newComment"
+                    placeholder="New comment"></textarea>
+          <div class="col-sm-3">
+            <button type="button" class="btn btn-sm btn-primary" (click)="createNewComment()">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
