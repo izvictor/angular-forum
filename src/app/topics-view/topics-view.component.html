@@ -11,8 +11,8 @@
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let comment of topic.comments">
               <i class="fa fa-user"></i>
-              <span [ngClass]="{'font-italic text-info' : comment.user?.id===loggedIn.id}">{{comment.user?.name || 'Anonymous'}}</span>
-              - {{comment.content}}
+              <span [ngClass]="{'font-italic text-info' : comment.user?.id===getLogged()?.id}">{{comment.user?.name || 'Anonymous'}}</span>
+              : {{comment.content}}
             </li>
           </ul>
         </div>

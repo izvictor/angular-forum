@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../model/models';
-import {fakeUsers} from '../model/user-list';
+import {ApiService} from '../services/api.service';
+import {LoggedService} from '../services/logged.service';
 
 @Component({
   selector: 'f-user-selection',
@@ -9,18 +10,18 @@ import {fakeUsers} from '../model/user-list';
 })
 export class UserSelectionComponent implements OnInit {
 
-  users = fakeUsers;
+  users = [];
   logged: User;
-  @Output() userSelected = new EventEmitter();
 
-  constructor() {
+  constructor(private apiService: ApiService, private loggedService: LoggedService) {
+    apiService.getUsers().subscribe(users => this.users = users);
   }
 
   ngOnInit() {
   }
 
   selected(user: User) {
-    this.userSelected.emit(user);
+    this.loggedService.logged = user;
   }
 
 }

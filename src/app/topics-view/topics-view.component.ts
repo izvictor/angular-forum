@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {topicList} from '../model/topic-list';
+import {Component, OnInit} from '@angular/core';
 import {Topic, User} from '../model/models';
+import {ApiService} from '../services/api.service';
+import {LoggedService} from '../services/logged.service';
 
 @Component({
   selector: 'f-topics-view',
@@ -9,16 +10,18 @@ import {Topic, User} from '../model/models';
 })
 export class TopicsViewComponent implements OnInit {
 
-  topics: Topic[] = topicList;
+  topics: Topic[] = [];
 
-  @Input() loggedIn: User;
-
-  constructor() {
-    console.log('constructor', this.loggedIn);
+  constructor(private apiService: ApiService, private loggedService: LoggedService) {
+    console.log('constructor', loggedService.logged);
+    apiService.getTopics().subscribe(topics => this.topics = topics);
   }
 
   ngOnInit() {
-    console.log('onInit', this.loggedIn);
+  }
+
+  getLogged(): User {
+    return this.loggedService.logged;
   }
 
 }

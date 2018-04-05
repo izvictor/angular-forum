@@ -21,9 +21,5 @@ export class ForumComponent implements OnInit {
 
   }
 
-  setLogged(user: User) {
-    this.loggedService.logged = user;
-  }
-
 
 }

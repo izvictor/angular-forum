@@ -7,7 +7,10 @@ import {ForumComponent} from './forum/forum.component';
 import {UserSelectionComponent} from './user-selection/user-selection.component';
 import {TopicsViewComponent} from './topics-view/topics-view.component';
 import {LoggedService} from './services/logged.service';
-
+import {HttpClientModule} from '@angular/common/http';
+import {ApiService} from './services/api.service';
+import {RouterModule} from '@angular/router';
+import {ROUTES} from './routes';
 
 @NgModule({
   declarations: [
@@ -17,9 +20,11 @@ import {LoggedService} from './services/logged.service';
     TopicsViewComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(ROUTES)
   ],
-  providers: [LoggedService],
+  providers: [LoggedService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
